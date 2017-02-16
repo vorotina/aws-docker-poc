@@ -1,0 +1,9 @@
+version: '2'
+services:
+ tcagent:
+   image: jetbrains/teamcity-agent:9.1.7
+   volumes:
+    - ./agent_config:/data/teamcity_agent/conf
+    -  /var/run/docker.sock:/var/run/docker.sock
+   environment:
+    SERVER_URL: http://offbm001.vistaprint.net/

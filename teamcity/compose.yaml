@@ -1,0 +1,17 @@
+version: '2'
+services:
+ tcserver:
+   image: jetbrains/teamcity-server
+   volumes:
+    - ./data:/data/teamcity_server/datadir
+   ports:
+    - 8111:8111
+ tcagent:
+   image: jetbrains/teamcity-agent
+   volumes:
+    - ./teamcity_agent:/data/teamcity_agent/conf
+    -  /var/run/docker.sock:/var/run/docker.sock
+   environment:
+    SERVER_URL: http://tcserver:8111
+   links:
+    - tcserver
